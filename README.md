@@ -9,7 +9,9 @@
 [![Web Audio API](https://img.shields.io/badge/Audio-Procedural%20Web%20Audio-orange)](#)
 
 > **專為電競選手、節奏遊戲玩家與反應力訓練者打造的高精度純鍵盤神經反射訓練系統。**  
-> 全程免用滑鼠，以毫秒（ms）為單位精確捕捉每一次神經傳導與擊鍵反饋！
+> 全程免用滑鼠，以毫秒（ms）為單位精確捕捉每一次神經傳導與擊鍵反饋！  
+> 
+> 🎮 **線上直接暢玩 (Live Demo)**：[https://shshnknk1031-ui.github.io/neuroreflex/](https://shshnknk1031-ui.github.io/neuroreflex/)
 
 ---
 
