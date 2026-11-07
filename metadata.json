@@ -1,0 +1,6 @@
+{
+  "name": "神經反射訓練館 - NeuroReflex",
+  "description": "專業反應力與手眼協調訓練系統，提供極限追蹤、瞬間精準點擊與多維反射挑戰，即時毫秒級反應時間分析。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
