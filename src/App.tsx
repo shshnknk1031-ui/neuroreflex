@@ -12,6 +12,7 @@ import { HUD } from './components/HUD';
 import { PauseModal } from './components/PauseModal';
 import { SummaryModal } from './components/SummaryModal';
 import { SettingsModal } from './components/SettingsModal';
+import { VolcanoBackground } from './components/VolcanoBackground';
 
 const DEFAULT_SETTINGS: GameSettings = {
   crosshairStyle: 'tactical',
@@ -265,11 +266,14 @@ export default function App() {
   }, [gameState, handleToggleMute, startRound]);
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden bg-slate-950 select-none">
+    <div className="relative w-screen h-screen overflow-hidden bg-[#070202] select-none">
+      {/* Dynamic Procedural Volcano Atmosphere (Caldera, Rising Embers, Lava Heartbeat) */}
+      <VolcanoBackground gameState={gameState} combo={combo} />
+
       {/* 60fps Canvas (Isolated from React re-renders) */}
       <canvas
         ref={canvasRef}
-        className={`absolute inset-0 w-full h-full block cursor-none ${
+        className={`absolute inset-0 w-full h-full block cursor-none z-10 ${
           gameState === 'TITLE_MENU' ? 'opacity-30' : 'opacity-100'
         } transition-opacity duration-300`}
       />
@@ -289,13 +293,13 @@ export default function App() {
 
       {/* Screen: Countdown Overlay */}
       {gameState === 'COUNTDOWN' && (
-        <div className="absolute inset-0 z-40 flex items-center justify-center bg-slate-950/60 backdrop-blur-sm pointer-events-none">
+        <div className="absolute inset-0 z-40 flex items-center justify-center bg-black/65 backdrop-blur-sm pointer-events-none">
           <div className="text-center animate-pulse">
-            <div className="text-8xl sm:text-9xl font-black font-display text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-teal-300 drop-shadow-[0_0_35px_rgba(56,189,248,0.7)]">
+            <div className="text-8xl sm:text-9xl font-black font-display text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-500 to-red-600 drop-shadow-[0_0_45px_rgba(255,80,0,0.85)]">
               {countdownValue}
             </div>
-            <div className="text-sm font-mono tracking-widest text-slate-300 mt-4 uppercase">
-              集中視線 · 鎖定靶心
+            <div className="text-sm font-mono tracking-widest text-amber-200 mt-4 uppercase drop-shadow-[0_0_12px_rgba(255,100,0,0.6)]">
+              火山即將噴發 · 集中視線 · 鎖定靶心
             </div>
           </div>
         </div>

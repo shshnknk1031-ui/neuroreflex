@@ -97,7 +97,7 @@ export class GameEngine {
 
   constructor(canvas: HTMLCanvasElement, mode: GameMode, settings: GameSettings, callbacks: EngineCallbacks) {
     this.canvas = canvas;
-    const context = canvas.getContext('2d', { alpha: false });
+    const context = canvas.getContext('2d', { alpha: true });
     if (!context) throw new Error('Could not get 2d context');
     this.ctx = context;
     this.mode = mode;
@@ -450,17 +450,19 @@ export class GameEngine {
     });
   }
 
-  private createExplosion(x: number, y: number, color: string, count: number = 20) {
+  private createExplosion(x: number, y: number, color: string, count: number = 22) {
     for (let i = 0; i < count; i++) {
       const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.5;
-      const speed = 1.5 + Math.random() * 4.5;
+      const speed = 1.6 + Math.random() * 4.8;
+      // Fiery spark variations for intense volcanic sensation
+      const particleColor = Math.random() < 0.35 ? '#ffaa00' : Math.random() < 0.25 ? '#ff3d00' : color;
       this.particles.push({
         x,
         y,
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed,
-        size: 2 + Math.random() * 3.5,
-        color,
+        size: 2 + Math.random() * 3.8,
+        color: particleColor,
         alpha: 1.0,
         decay: 0.015 + Math.random() * 0.025,
       });
@@ -897,12 +899,16 @@ export class GameEngine {
       ctx.translate(ox, oy);
     }
 
-    ctx.fillStyle = '#030712';
+    ctx.clearRect(0, 0, width, height);
+
+    // Subtle dark volcanic arena floor wash to ensure targets maintain crisp contrast
+    ctx.fillStyle = 'rgba(10, 3, 3, 0.42)';
     ctx.fillRect(0, 0, width, height);
 
-    // Subtle arena tactical grid
+    // Volcanic tactical magma grid
     ctx.save();
-    ctx.strokeStyle = 'rgba(30, 41, 59, 0.4)';
+    const gridPulse = (Math.sin(now * 0.0035) + 1) * 0.5;
+    ctx.strokeStyle = `rgba(234, 88, 12, ${0.12 + gridPulse * 0.08})`;
     ctx.lineWidth = 1;
     const gridSize = 60;
     for (let x = 0; x < width; x += gridSize) {
@@ -917,6 +923,15 @@ export class GameEngine {
       ctx.lineTo(width, y);
       ctx.stroke();
     }
+
+    // Arena center heat targeting ring
+    ctx.strokeStyle = `rgba(255, 115, 0, ${0.16 + gridPulse * 0.12})`;
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([5, 8]);
+    ctx.beginPath();
+    ctx.arc(width / 2, height / 2, Math.min(width, height) * 0.36, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.setLineDash([]);
     ctx.restore();
 
     if (this.mode === 'RAW_REFLEX_BENCH') {
@@ -972,28 +987,36 @@ export class GameEngine {
       ctx.fillStyle = '#f0fdf4';
       ctx.fillText('[ 空白鍵 / Space 或任意鍵立即擊發 ]', width / 2, height / 2 + 45);
     } else if (this.rawBenchState === 'waiting') {
-      ctx.fillStyle = '#0f172a';
+      ctx.fillStyle = 'rgba(18, 5, 5, 0.78)';
       ctx.fillRect(0, 0, width, height);
 
-      const pulse = (Math.sin(performance.now() * 0.005) + 1) * 0.5;
+      const pulse = (Math.sin(performance.now() * 0.006) + 1) * 0.5;
       ctx.save();
-      ctx.strokeStyle = `rgba(56, 189, 248, ${0.4 + pulse * 0.4})`;
-      ctx.lineWidth = 2;
+      ctx.strokeStyle = `rgba(255, 69, 0, ${0.45 + pulse * 0.45})`;
+      ctx.lineWidth = 2.5;
+      ctx.shadowColor = '#ff4500';
+      ctx.shadowBlur = 18;
       ctx.beginPath();
-      ctx.arc(width / 2, height / 2, 70 + pulse * 20, 0, Math.PI * 2);
+      ctx.arc(width / 2, height / 2, 70 + pulse * 25, 0, Math.PI * 2);
       ctx.stroke();
 
-      ctx.fillStyle = '#e2e8f0';
+      ctx.strokeStyle = `rgba(255, 170, 0, ${0.3 + pulse * 0.3})`;
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.arc(width / 2, height / 2, 45, 0, Math.PI * 2);
+      ctx.stroke();
+
+      ctx.fillStyle = '#ffedd5';
       ctx.font = '700 28px "Outfit", sans-serif';
       ctx.textAlign = 'center';
-      ctx.fillText('保持專注... 隨機信號準備中', width / 2, height / 2 - 20);
+      ctx.fillText('集中專注... 熔岩即將噴發 (等待信號)', width / 2, height / 2 - 20);
 
       ctx.font = '400 15px "Plus Jakarta Sans", sans-serif';
-      ctx.fillStyle = '#94a3b8';
+      ctx.fillStyle = '#fdba74';
       ctx.fillText(`第 ${this.rawBenchTrialIndex + 1} / 5 次測試 · 綠屏亮起瞬間按下鍵盤任意鍵`, width / 2, height / 2 + 25);
       ctx.restore();
     } else if (this.rawBenchState === 'false_start') {
-      ctx.fillStyle = '#7f1d1d';
+      ctx.fillStyle = '#5a0a0a';
       ctx.fillRect(0, 0, width, height);
 
       ctx.fillStyle = '#fecaca';
@@ -1006,10 +1029,10 @@ export class GameEngine {
       ctx.fillText('請等待綠色信號亮起再按鍵，即將重新準備...', width / 2, height / 2 + 30);
     } else if (this.rawBenchState === 'result') {
       const last = this.rawBenchTrials[this.rawBenchTrials.length - 1];
-      ctx.fillStyle = '#0f172a';
+      ctx.fillStyle = 'rgba(18, 5, 5, 0.85)';
       ctx.fillRect(0, 0, width, height);
 
-      ctx.fillStyle = '#38bdf8';
+      ctx.fillStyle = '#fb923c';
       ctx.font = '800 54px "JetBrains Mono", monospace';
       ctx.textAlign = 'center';
       ctx.fillText(`${last} ms`, width / 2, height / 2 - 10);
