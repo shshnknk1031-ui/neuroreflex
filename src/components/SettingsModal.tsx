@@ -48,6 +48,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   ];
 
   const colors = [
+    { label: '熔岩熾橙', hex: '#ff5500' },
     { label: '霓虹青', hex: '#38bdf8' },
     { label: '極光綠', hex: '#10b981' },
     { label: '戰術琥珀', hex: '#f59e0b' },
@@ -79,19 +80,19 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
-      <div className="relative w-full max-w-xl bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm">
+      <div className="relative w-full max-w-xl bg-slate-950/90 border border-orange-950/80 rounded-2xl shadow-[0_0_50px_rgba(255,80,0,0.25)] backdrop-blur-md overflow-hidden">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-900/60">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-orange-950/60 bg-slate-900/60">
           <div className="flex items-center gap-2">
-            <Sliders className="w-5 h-5 text-sky-400" />
+            <Sliders className="w-5 h-5 text-orange-400" />
             <h3 className="font-display font-bold text-slate-100 text-base">
               鍵盤控制與訓練自訂設定
             </h3>
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded-lg text-slate-400 hover:text-slate-100 hover:bg-slate-800 transition-colors"
+            className="p-1 rounded-lg text-slate-400 hover:text-slate-100 hover:bg-slate-800 transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
@@ -321,10 +322,10 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="flex justify-end px-6 py-4 border-t border-slate-800 bg-slate-900/60">
+        <div className="flex justify-end px-6 py-4 border-t border-orange-950/60 bg-slate-900/60">
           <button
             onClick={onClose}
-            className="px-5 py-2 rounded-lg bg-sky-400 hover:bg-sky-300 text-slate-950 text-xs font-bold transition-colors"
+            className="px-5 py-2 rounded-lg bg-gradient-to-r from-amber-400 via-orange-500 to-red-600 hover:from-amber-300 hover:to-orange-500 text-slate-950 text-xs font-bold transition-all shadow-[0_0_15px_rgba(255,100,0,0.4)] cursor-pointer"
           >
             完成儲存 [Esc]
           </button>

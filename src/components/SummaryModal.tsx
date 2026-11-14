@@ -157,18 +157,18 @@ export const SummaryModal: React.FC<SummaryModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-sm overflow-y-auto">
-      <div className="relative w-full max-w-4xl bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden my-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm overflow-y-auto">
+      <div className="relative w-full max-w-4xl bg-slate-950/90 border border-orange-950/80 rounded-2xl shadow-[0_0_50px_rgba(255,80,0,0.25)] backdrop-blur-md overflow-hidden my-auto">
         {/* Top Header Strip */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-900/60">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-orange-950/60 bg-slate-900/60">
           <div className="flex items-center gap-2">
-            <Award className="w-5 h-5 text-sky-400" />
+            <Award className="w-5 h-5 text-orange-400" />
             <span className="font-display font-bold text-slate-100 text-base">
-              訓練成效分析診斷報告 · {modeNames[stats.mode]}
+              火山訓練成效分析報告 · {modeNames[stats.mode]}
             </span>
           </div>
-          <div className="text-xs font-mono text-slate-400">
-            SESSION EVALUATION
+          <div className="text-xs font-mono text-orange-300/70">
+            VOLCANIC SESSION EVALUATION
           </div>
         </div>
 
@@ -342,10 +342,10 @@ export const SummaryModal: React.FC<SummaryModalProps> = ({
 
             <button
               onClick={onPlayAgain}
-              className="flex items-center gap-2 px-6 py-2.5 rounded-lg bg-sky-400 hover:bg-sky-300 text-slate-950 text-xs font-bold transition-all shadow-[0_0_16px_rgba(56,189,248,0.3)] hover:shadow-[0_0_24px_rgba(56,189,248,0.5)]"
+              className="flex items-center gap-2 px-6 py-2.5 rounded-lg bg-gradient-to-r from-amber-400 via-orange-500 to-red-600 hover:from-amber-300 hover:to-orange-500 text-slate-950 text-xs font-bold transition-all shadow-[0_0_20px_rgba(255,100,0,0.4)] hover:shadow-[0_0_28px_rgba(255,100,0,0.6)] cursor-pointer"
             >
               <RotateCcw className="w-4 h-4" />
-              <span>再次訓練 [Space / Enter]</span>
+              <span>再次挑戰 [Space / Enter]</span>
             </button>
           </div>
         </div>

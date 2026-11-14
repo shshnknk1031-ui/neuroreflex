@@ -107,16 +107,16 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
       {/* Top Header Row */}
       <div className="flex items-center justify-between w-full max-w-6xl mx-auto">
         <div className="flex items-center gap-3">
-          <div className="w-2.5 h-2.5 bg-sky-400 rounded-full shadow-[0_0_12px_rgba(56,189,248,0.8)]" />
-          <span className="text-xs uppercase tracking-widest font-mono text-slate-400">
-            NeuroReflex · 全鍵盤專注訓練系統
+          <div className="w-2.5 h-2.5 bg-gradient-to-r from-orange-500 to-amber-400 rounded-full shadow-[0_0_14px_rgba(255,100,0,0.9)] animate-pulse" />
+          <span className="text-xs uppercase tracking-widest font-mono text-orange-200/80">
+            NeuroReflex · 火山極限反應訓練系統
           </span>
         </div>
 
         <div className="flex items-center gap-3">
           {/* Active Keyboard Scheme Indicator */}
-          <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900/80 border border-slate-800 text-xs font-mono text-slate-400">
-            <Keyboard className="w-3.5 h-3.5 text-sky-400" />
+          <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-950/80 border border-orange-900/40 text-xs font-mono text-slate-300">
+            <Keyboard className="w-3.5 h-3.5 text-orange-400" />
             <span>
               {settings.keyboardControlMode === 'direct_keys'
                 ? settings.keyLayout === 'wasd_only'
@@ -130,15 +130,15 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
 
           <button
             onClick={onToggleMute}
-            className="p-2.5 rounded-lg border border-slate-800 bg-slate-900/80 hover:bg-slate-800 text-slate-300 hover:text-white transition-colors"
+            className="p-2.5 rounded-lg border border-orange-900/40 bg-slate-950/80 hover:bg-slate-900 text-slate-300 hover:text-white transition-colors"
             title={settings.soundMuted ? '取消靜音 (M)' : '靜音 (M)'}
             aria-label="Sound toggle"
           >
-            {settings.soundMuted ? <VolumeX className="w-4 h-4 text-red-400" /> : <Volume2 className="w-4 h-4 text-sky-400" />}
+            {settings.soundMuted ? <VolumeX className="w-4 h-4 text-red-400" /> : <Volume2 className="w-4 h-4 text-orange-400" />}
           </button>
           <button
             onClick={onOpenSettings}
-            className="flex items-center gap-2 px-3.5 py-2 rounded-lg border border-slate-800 bg-slate-900/80 hover:bg-slate-800 text-slate-300 hover:text-white text-xs font-medium transition-colors"
+            className="flex items-center gap-2 px-3.5 py-2 rounded-lg border border-orange-900/40 bg-slate-950/80 hover:bg-slate-900 text-slate-300 hover:text-white text-xs font-medium transition-colors"
           >
             <SettingsIcon className="w-4 h-4" />
             <span>鍵位與訓練設定</span>
@@ -153,22 +153,22 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
           <svg className="w-72 h-16 sm:w-96 sm:h-20" viewBox="0 0 400 80" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="titleGlow" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#38bdf8" />
-                <stop offset="50%" stopColor="#818cf8" />
-                <stop offset="100%" stopColor="#34d399" />
+                <stop offset="0%" stopColor="#f59e0b" />
+                <stop offset="50%" stopColor="#ff4500" />
+                <stop offset="100%" stopColor="#ef4444" />
               </linearGradient>
             </defs>
-            <path d="M 10 24 L 2 24 L 2 56 L 10 56" stroke="#38bdf8" strokeWidth="2.5" fill="none" />
-            <path d="M 390 24 L 398 24 L 398 56 L 390 56" stroke="#38bdf8" strokeWidth="2.5" fill="none" />
-            <line x1="20" y1="40" x2="48" y2="40" stroke="rgba(56,189,248,0.4)" strokeWidth="1" strokeDasharray="3 3" />
-            <line x1="352" y1="40" x2="380" y2="40" stroke="rgba(56,189,248,0.4)" strokeWidth="1" strokeDasharray="3 3" />
-            <circle cx="200" cy="40" r="32" stroke="rgba(99,102,241,0.2)" strokeWidth="1" strokeDasharray="4 4" />
+            <path d="M 10 24 L 2 24 L 2 56 L 10 56" stroke="#ff4500" strokeWidth="2.5" fill="none" />
+            <path d="M 390 24 L 398 24 L 398 56 L 390 56" stroke="#ff4500" strokeWidth="2.5" fill="none" />
+            <line x1="20" y1="40" x2="48" y2="40" stroke="rgba(255,100,0,0.5)" strokeWidth="1" strokeDasharray="3 3" />
+            <line x1="352" y1="40" x2="380" y2="40" stroke="rgba(255,100,0,0.5)" strokeWidth="1" strokeDasharray="3 3" />
+            <circle cx="200" cy="40" r="32" stroke="rgba(255,69,0,0.3)" strokeWidth="1" strokeDasharray="4 4" />
             <text x="200" y="48" textAnchor="middle" fill="url(#titleGlow)" fontSize="32" fontWeight="800" letterSpacing="5" fontFamily="Outfit, sans-serif">
               NEUROREFLEX
             </text>
           </svg>
-          <div className="text-slate-400 text-xs sm:text-sm tracking-wider font-medium">
-            神經反射與手眼協調 · 專業鍵盤專注訓練系統
+          <div className="text-orange-200/90 text-xs sm:text-sm tracking-wider font-medium flex items-center justify-center gap-2">
+            <span>🌋 火山熔岩特訓 · 神經反射與手眼協調鍵盤系統</span>
           </div>
         </div>
 
@@ -180,18 +180,18 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
               <button
                 key={m.id}
                 onClick={() => onSelectMode(m.id)}
-                className={`relative text-left p-4 rounded-xl border transition-all duration-200 cursor-pointer ${
+                className={`relative text-left p-4 rounded-xl border transition-all duration-200 cursor-pointer backdrop-blur-md ${
                   isSelected
-                    ? `bg-slate-900/90 border-sky-400 shadow-[0_0_24px_rgba(56,189,248,0.25)] ring-1 ring-sky-400/50 scale-[1.02]`
-                    : 'bg-slate-900/40 border-slate-800/80 hover:border-slate-700 hover:bg-slate-900/70'
+                    ? `bg-slate-950/90 border-orange-500 shadow-[0_0_24px_rgba(255,80,0,0.35)] ring-1 ring-orange-500/60 scale-[1.02]`
+                    : 'bg-slate-950/50 border-orange-950/40 hover:border-orange-700/60 hover:bg-slate-950/70'
                 }`}
               >
                 <div className="flex items-center justify-between mb-3">
-                  <div className="p-2 rounded-lg bg-slate-800/80 border border-slate-700/60">
+                  <div className="p-2 rounded-lg bg-slate-900/80 border border-orange-950/60">
                     {m.icon}
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <span className="px-1.5 py-0.5 rounded bg-slate-800 border border-slate-700 text-[10px] font-mono text-sky-400 font-bold">
+                    <span className="px-1.5 py-0.5 rounded bg-slate-900 border border-orange-900/50 text-[10px] font-mono text-orange-400 font-bold">
                       [{m.keyIndex}]
                     </span>
                     <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400">
@@ -209,7 +209,7 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
                   {m.desc}
                 </p>
                 {isSelected && (
-                  <div className="absolute top-2 right-2 w-2 h-2 rounded-full bg-sky-400 shadow-[0_0_8px_#38bdf8]" />
+                  <div className="absolute top-2 right-2 w-2 h-2 rounded-full bg-orange-500 shadow-[0_0_8px_#ff6600]" />
                 )}
               </button>
             );
@@ -217,7 +217,7 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
         </div>
 
         {/* Mode Record Summary Banner */}
-        <div className="flex items-center gap-6 px-6 py-3 rounded-xl bg-slate-900/60 border border-slate-800/80 mb-8 text-xs font-mono">
+        <div className="flex items-center gap-6 px-6 py-3 rounded-xl bg-slate-950/75 border border-orange-950/60 backdrop-blur-md mb-8 text-xs font-mono">
           <div className="flex items-center gap-2 text-amber-400">
             <Trophy className="w-4 h-4" />
             <span className="font-medium">歷史最佳紀錄</span>
@@ -230,7 +230,7 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
           </div>
           <div className="text-slate-400">
             最快平均反應：
-            <span className="text-sky-400 font-bold tabular-nums ml-1">
+            <span className="text-orange-400 font-bold tabular-nums ml-1">
               {currentRecord?.bestAvgReactionMs ? `${currentRecord.bestAvgReactionMs} ms` : '—'}
             </span>
           </div>
@@ -245,9 +245,9 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
         {/* Start Game CTA Button */}
         <button
           onClick={onStartGame}
-          className="group relative inline-flex items-center justify-center px-10 py-4 font-display text-lg font-bold text-slate-950 bg-gradient-to-r from-sky-400 via-teal-300 to-sky-400 hover:from-sky-300 hover:to-teal-200 rounded-xl shadow-[0_0_30px_rgba(56,189,248,0.4)] hover:shadow-[0_0_40px_rgba(56,189,248,0.6)] transform hover:scale-[1.03] active:scale-[0.98] transition-all cursor-pointer"
+          className="group relative inline-flex items-center justify-center px-10 py-4 font-display text-lg font-bold text-slate-950 bg-gradient-to-r from-amber-400 via-orange-500 to-red-600 hover:from-amber-300 hover:to-orange-500 rounded-xl shadow-[0_0_35px_rgba(255,80,0,0.5)] hover:shadow-[0_0_45px_rgba(255,80,0,0.75)] transform hover:scale-[1.03] active:scale-[0.98] transition-all cursor-pointer"
         >
-          <span>開始訓練 [ Space / Enter ]</span>
+          <span>開始極限訓練 [ Space / Enter ]</span>
         </button>
       </div>
 
